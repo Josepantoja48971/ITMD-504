@@ -17,4 +17,22 @@ if (err) throw err;
 app.get('/',(req,res)=>{
 res.json({message:'Welcome to task manager josep'});
 });
+app.get('/tasks',(req,res)=>{
+myDB.query('SELECT*FROM tasks', (err,rows)=>{
+if (err)return res.status(500).json({error:err.message});
+res.json(rows);
+});
+});
+app.post('/tasks', (req,res)=>{
+const {title, due_date}=req.body;
+myDB.query('INSERT INTO tasks(title, due_date,status)VALUES(?,?, "incomplete")',
+[title, due_date],
+(err,newTask)=>{
+if(err) return res.status(500).json({error:err.message});
+res.json({id:newTask.insertId, title, due_date,status:'incomplete'});
+});
+});
+app.put('/tasks/:id', (req,res)=>{
+const{status}=req.body;
+myDB.query('U')
 
