@@ -34,5 +34,18 @@ res.json({id:newTask.insertId, title, due_date,status:'incomplete'});
 });
 app.put('/tasks/:id', (req,res)=>{
 const{status}=req.body;
-myDB.query('U')
-
+myDB.query('UPDATE tasks SET status=? WHERE id=?',
+[status, req.params.id],  
+(err)=>{
+if (err)return res.status(500).json({error:err.message});
+res.json({message:'task updated'});
+});
+});
+app.delete('/tasks/:id', (req,res)=>{
+myDB.query('DELETE FROM tasks WHERE id=?',[req.params.id],
+(err)=>{
+if (err) return res.status(500).json({error:err.message});
+res.json({message:'task removed'});
+});
+});
+app.listen(process.env.PORT);
