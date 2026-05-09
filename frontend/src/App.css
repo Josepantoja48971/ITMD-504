@@ -1,38 +1,63 @@
 .App {
-  text-align: center;
+max-width: 800px;
+margin: 0 auto;
+padding: 20px;
+font-family: Arial, sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+text-align: center;
+color: #333;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add-task {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.add-task input {
+padding: 8px;
+flex: 1;
+border: 1px solid #ccc;
+border-radius: 4px;
 }
-
-.App-link {
-  color: #61dafb;
+.add-task button {
+padding: 8px 16px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.task-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.task-card {
+background-color: #f9f9f9;
+padding: 15px;
+border-radius: 8px;
+border: 1px solid #ddd;
+}
+.task-card h3 {
+margin: 0 0 8px 0;
+color: #333;
+}
+.task-card p {
+margin: 4px 0;
+color: #666;
+}
+.task-card button {
+margin-right: 8px;
+padding: 6px 12px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+.task-card button:first-of-type {
+background-color: #2196F3;
+color: white;
+}
+.task-card button:last-of-type {
+background-color: #f44336;
+color: white;
 }
