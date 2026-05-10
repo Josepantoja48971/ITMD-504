@@ -8,12 +8,12 @@ useEffect(()=>{
 fetchTasks();
 },[]);
 const fetchTasks=()=>{
-fetch('http://localhost:3001/tasks')
+fetch('http://Josep-task-manager-env.eba-wc3tb4pm.us-east-2.elasticbeanstalk.com/tasks')
 .then(res=>res.json())
 .then(data=>setTasks(data));
 };
 const addTask =()=>{
-fetch('http://localhost:3001/tasks',{
+fetch('http://Josep-task-manager-env.eba-wc3tb4pm.us-east-2.elasticbeanstalk.com/tasks',{
 method: 'POST',
 headers:{'Content-type':'application/json'},
 body: JSON.stringify({title, due_date:dueDate})
@@ -26,7 +26,7 @@ setDueDate('');
 });
 };
 const updateTask=(id)=>{
-fetch(`http://localhost:3001/tasks/${id}`,{
+fetch(`http://Josep-task-manager-env.eba-wc3tb4pm.us-east-2.elasticbeanstalk.com/tasks/${id}`,{
 method:'PUT',
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify({status:'completed'})
@@ -34,7 +34,7 @@ body:JSON.stringify({status:'completed'})
 .then(()=>fetchTasks());
 };
 const deleteTask=(id)=>{
-fetch(`http://localhost:3001/tasks/${id}`,{
+fetch(`http://Josep-task-manager-env.eba-wc3tb4pm.us-east-2.elasticbeanstalk.com/tasks/${id}`,{
 method:'DELETE'
 })
 .then(()=>fetchTasks());
