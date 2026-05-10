@@ -1,4 +1,5 @@
 const express=require('express');
+const { logActivity }=require('./dynamodb');
 const mysql=require('mysql2');
 const cors=require('cors');
 require('dotenv').config();
@@ -29,6 +30,7 @@ myDB.query('INSERT INTO tasks(title, due_date,status)VALUES(?,?, "incomplete")',
 [title, due_date],
 (err,newTask)=>{
 if(err) return res.status(500).json({error:err.message});
+logActivity('task created', title);
 res.json({id:newTask.insertId, title, due_date,status:'incomplete'});
 });
 });
@@ -38,6 +40,7 @@ myDB.query('UPDATE tasks SET status=? WHERE id=?',
 [status, req.params.id],  
 (err)=>{
 if (err)return res.status(500).json({error:err.message});
+logActivity('task updated', req.params.id);
 res.json({message:'task updated'});
 });
 });
@@ -45,6 +48,7 @@ app.delete('/tasks/:id', (req,res)=>{
 myDB.query('DELETE FROM tasks WHERE id=?',[req.params.id],
 (err)=>{
 if (err) return res.status(500).json({error:err.message});
+logActivity('task deleted', req.params.id);
 res.json({message:'task removed'});
 });
 });
